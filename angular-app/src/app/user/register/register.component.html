@@ -1,0 +1,89 @@
+<br /><br />
+<div class="container">
+  <div class="row">
+    <div class="col"></div>
+    <div class="col">
+      <mat-horizontal-stepper #stepper>
+        <mat-step [stepControl]="registerFormGroup">
+          <form [formGroup]="registerFormGroup">
+            <ng-template matStepLabel>Fill out your name</ng-template>
+            <mat-form-field class="example-full-width">
+              <mat-label>Username</mat-label>
+              <input formControlName="name" matInput type="text" placeholder="name" />
+              <mat-error *ngIf="registerFormGroup.invalid">
+                Please enter a Name
+              </mat-error>
+            </mat-form-field>
+            <br /><br />
+            <mat-form-field class="example-full-width">
+              <mat-label>User Email</mat-label>
+              <input formControlName="email" matInput type="email" placeholder="exemple@gmail.com" />
+              <mat-error *ngIf="registerFormGroup.invalid">
+                Please enter a valide email
+              </mat-error>
+            </mat-form-field>
+            <br /><br />
+            <mat-form-field class="example-full-width">
+              <mat-label>User Password</mat-label>
+              <input formControlName="password" matInput [type]="hide ? 'password' : 'text'" placeholder="Password" />
+              <a mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+                [attr.aria-pressed]="hide">
+                <mat-icon>{{ hide ? "visibility_off" : "visibility" }}</mat-icon>
+              </a>
+              <mat-error *ngIf="registerFormGroup.invalid">
+                Please enter a Password
+              </mat-error>
+            </mat-form-field>
+            <br /><br />
+            <mat-form-field class="example-full-width">
+              <mat-label>Confirm Password</mat-label>
+              <input formControlName="confirm_password" matInput [type]="confirm_hide ? 'password' : 'text'"
+                placeholder="confirm password" />
+              <a mat-icon-button matSuffix (click)="confirm_hide = !confirm_hide" [attr.aria-label]="'Hide password'"
+                [attr.aria-pressed]="confirm_hide">
+                <mat-icon>{{ confirm_hide ? "visibility_off" : "visibility" }}</mat-icon>
+              </a>
+              <mat-error *ngIf="registerFormGroup.invalid">
+                Please confirme your password
+              </mat-error>
+            </mat-form-field>
+            <br> <br>
+            <div>
+              <button mat-stroked-button style="outline: none; color: #808080" matStepperNext>Next</button>
+            </div>
+          </form>
+        </mat-step>
+
+        <!-- <mat-step [stepControl]="secondFormGroup" label="Fill out your address">
+        <form [formGroup]="secondFormGroup">
+          <mat-form-field>
+            <mat-label>Address</mat-label>
+            <input
+              matInput
+              formControlName="secondCtrl"
+              placeholder="Ex. 1 Main St, New York, NY"
+              required
+            />
+          </mat-form-field>
+          <div>
+            <button mat-button matStepperPrevious>Back</button>
+            <button mat-button matStepperNext>Next</button>
+          </div>
+        </form>
+      </mat-step> -->
+        <mat-step>
+          <ng-template matStepLabel>Done</ng-template>
+          <h5>Do you whant to Register with :</h5>
+          <p> Username {{ registerFormGroup.value.name}}</p>
+          <p> Email {{ registerFormGroup.value.email}}</p>
+          <div>
+            <button mat-stroked-button style="outline: none; color: #808080" (click)="registerUser()">Yes</button>&nbsp;
+            <button mat-stroked-button style="outline: none; color: #808080" matStepperPrevious>No</button>
+
+          </div>
+        </mat-step>
+      </mat-horizontal-stepper>
+    </div>
+    <div class="col"></div>
+  </div>
+</div>

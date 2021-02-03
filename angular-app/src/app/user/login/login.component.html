@@ -1,0 +1,38 @@
+<br /><br />
+<div class="container">
+  <div class="row">
+    <div class="col"></div>
+    <div class="col-6">
+      <h1 align="center" style="color: #808080">
+        <b><i>User Login</i></b>
+      </h1>
+      <br />
+      <form class="example-form" [formGroup]="loginForm" (ngSubmit)="loginUser()">
+        <mat-form-field class="example-full-width">
+          <mat-label>User Email</mat-label>
+          <input formControlName="username" matInput type="email" placeholder="example@gmail.com" />
+          <mat-error *ngIf="loginForm.invalid">
+            Please enter a valid email address
+          </mat-error>
+        </mat-form-field>
+        <br /><br />
+        <mat-form-field class="example-full-width">
+          <mat-label>User Password</mat-label>
+          <input formControlName="password" matInput [type]="hide ? 'password' : 'text'" placeholder="Password" />
+          <a mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+            [attr.aria-pressed]="hide">
+            <mat-icon>{{ hide ? "visibility_off" : "visibility" }}</mat-icon>
+          </a>
+          <mat-error *ngIf="loginForm.invalid">
+            Please enter a Password
+          </mat-error>
+        </mat-form-field>
+        <br /><br />
+        <button type="submit" style="outline: none; color: #808080" mat-stroked-button class="btn-block">
+          Login
+        </button>
+      </form>
+    </div>
+    <div class="col"></div>
+  </div>
+</div>
